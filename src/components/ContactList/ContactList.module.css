@@ -1,0 +1,24 @@
+.listContacts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  padding-left: 25px;
+}
+
+.itemContact {
+  width: 430px;
+
+  border-radius: 4px;
+  border: 1px solid black;
+
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  padding: 10px;
+  overflow: hidden;
+}
+
+.itemContact:hover,
+.itemContact:focus {
+  transform: scale(1.05);
+}

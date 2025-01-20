@@ -1,0 +1,36 @@
+.container {
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.inputText {
+  font-size: 17px;
+  line-height: 1.33;
+  letter-spacing: -0.01em;
+
+  margin-bottom: 5px;
+}
+
+.container {
+  width: 450px;
+  position: relative;
+}
+
+.formInput {
+  width: 430px;
+  border-radius: 4px;
+  border: 1px solid black;
+  outline: transparent;
+
+  transition: border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 6px 15px;
+  /* padding-right: 35px; */
+}
+
+.formInput:hover,
+.formInput:focus {
+  border-color: #646864;
+  box-shadow: 0 4px 4px #00000026;
+}

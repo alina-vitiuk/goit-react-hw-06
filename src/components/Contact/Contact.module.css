@@ -1,0 +1,51 @@
+.containerContac {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.thumbContact {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.nameContact {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  font-size: 18px;
+  font-weight: 500;
+
+  margin-bottom: 5px;
+}
+
+.numberContact {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.buttonDelete {
+  display: flex;
+  gap: 5px;
+  background-color: #e7e7e7;
+  width: 100px;
+  border-radius: 4px;
+  border: 1px solid black;
+  color: black;
+  box-shadow: 0 4px 4px #00000026;
+  font-size: 15px;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  padding: 10px 15px;
+}
+
+.buttonDelete:hover {
+  background-color: #484848;
+  color: #9f9997;
+}
