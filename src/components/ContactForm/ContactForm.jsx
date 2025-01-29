@@ -1,10 +1,10 @@
-import { nanoid } from "nanoid";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useId } from "react";
 import * as Yup from "yup";
-import PropTypes from "prop-types";
 
 import css from "./ContactForm.module.css";
+import { useDispatch } from "react-redux";
+import { initialValues, addContact } from "../../redux/contactsSlice";
 
 const FeedbackSchema = Yup.object().shape({
   name: Yup.string()
@@ -16,20 +16,14 @@ const FeedbackSchema = Yup.object().shape({
     .required("Required"),
 });
 
-const ContactForm = ({ onAdd }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch();
+
   const nameId = useId();
   const numberId = useId();
 
-  const initialValues = {
-    name: "",
-    number: "",
-  };
-
   const handleSubmit = (values, actions) => {
-    onAdd({
-      id: nanoid(),
-      ...values,
-    });
+    dispatch(addContact(values));
     actions.resetForm();
   };
 
@@ -53,6 +47,7 @@ const ContactForm = ({ onAdd }) => {
               type="text"
               name="name"
               id={nameId}
+              placeholder="Name"
             />
           </div>
           <ErrorMessage
@@ -73,6 +68,7 @@ const ContactForm = ({ onAdd }) => {
               type="text"
               name="number"
               id={numberId}
+              placeholder="xxx-xx-xx"
             />
           </div>
           <ErrorMessage
@@ -88,10 +84,6 @@ const ContactForm = ({ onAdd }) => {
       )}
     </Formik>
   );
-};
-
-ContactForm.propTypes = {
-  onAdd: PropTypes.func,
 };
 
 export default ContactForm;

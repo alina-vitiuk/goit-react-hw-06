@@ -1,23 +1,35 @@
+import { nanoid } from "@reduxjs/toolkit";
 import Contact from "../Contact/Contact";
 import css from "./ContactList.module.css";
-import { nanoid } from "nanoid";
-import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { selectContacts, selectNameFilter } from "../../redux/filtersSlice";
 
-const ContactList = ({ contactList, onDelete }) => {
-  return (
-    <ul className={css.listContacts}>
-      {contactList.map((contact) => (
-        <li className={css.itemContact} key={nanoid()}>
-          <Contact data={contact} onDelete={onDelete} />
-        </li>
-      ))}
-    </ul>
+const ContactList = () => {
+  const contacts = useSelector(selectContacts);
+  const search = useSelector(selectNameFilter);
+  const filterContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(search.trim().toLowerCase())
   );
-};
 
-ContactList.propTypes = {
-  contactList: PropTypes.array,
-  onDelete: PropTypes.func,
+  return (
+    <>
+      {contacts.length !== 0 ? (
+        <ul className={css.listContacts}>
+          {filterContacts.map((contact) => (
+            <li className={css.itemContact} key={nanoid()}>
+              <Contact data={contact} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className={css.infoText}>Your phonebook is empty</p>
+      )}
+
+      {!filterContacts.length && contacts.length !== 0 && (
+        <p className={css.infoText}>No contacts found</p>
+      )}
+    </>
+  );
 };
 
 export default ContactList;
